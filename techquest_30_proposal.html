@@ -1,0 +1,144 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap');
+
+  .tq { font-family: 'DM Sans', sans-serif; color: #1a1730; max-width: 680px; padding: 1.5rem; background: #e8e5f8; border-radius: var(--border-radius-lg); }
+
+  .tq-hero { background: #0a0a12; border-radius: var(--border-radius-lg); padding: 3rem 2.5rem 2rem; margin-bottom: 2rem; position: relative; overflow: hidden; }
+  .tq-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(99,88,221,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(99,88,221,0.15) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
+  .tq-badge { display: inline-block; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #b0a8ff; border: 1px solid rgba(160,150,255,0.35); border-radius: 100px; padding: 4px 14px; margin-bottom: 1.2rem; }
+  .tq-title { font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 800; line-height: 1.05; color: #f0eeff; margin: 0 0 0.5rem; position: relative; z-index: 1; }
+  .tq-title span { color: #8b7ff0; }
+  .tq-subtitle { font-family: 'DM Sans', sans-serif; font-style: italic; font-size: 17px; color: rgba(200,196,255,0.7); margin: 0.3rem 0 0; position: relative; z-index: 1; }
+
+  .tq-section { margin: 0 0 1.75rem; }
+  .tq-section-label { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #534ab7; margin-bottom: 0.6rem; }
+  .tq-lead { font-size: 19px; font-weight: 500; line-height: 1.55; color: #1a1730; margin: 0 0 1rem; }
+  .tq-body { font-size: 15px; line-height: 1.78; color: #3c3460; margin: 0 0 0.9rem; }
+  .tq-divider { border: none; border-top: 1px solid #c4bff0; margin: 1.75rem 0; }
+
+  .tq-callout { border-left: 3px solid #7f77dd; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; padding: 1rem 1.25rem; background: #d8d3f5; margin: 1.5rem 0; font-size: 15px; font-style: italic; color: #26215c; line-height: 1.65; }
+
+  .tq-domains { display: flex; flex-wrap: wrap; gap: 7px; margin: 0.75rem 0; }
+  .tq-pill { font-size: 12.5px; font-weight: 500; background: #d8d3f5; color: #3c3489; border-radius: 100px; padding: 5px 14px; border: 1px solid #AFA9EC; }
+
+  .tq-events { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1rem 0; }
+  .tq-event { display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 500; color: #26215c; background: #d8d3f5; border: 1px solid #AFA9EC; border-radius: var(--border-radius-md); padding: 12px 14px; }
+  .tq-event i { color: #534ab7; font-size: 18px; flex-shrink: 0; }
+
+  .tq-scores { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 1rem 0; }
+  .tq-score-card { border-radius: var(--border-radius-md); padding: 14px 16px; border: 1.5px solid; }
+  .tq-score-icon { font-size: 20px; margin-bottom: 8px; }
+  .tq-score-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px; }
+  .tq-score-val { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; }
+
+  .tq-score-card.purple { border-color: #AFA9EC; background: #EEEDFE; }
+  .tq-score-card.purple .tq-score-icon, .tq-score-card.purple .tq-score-label { color: #534ab7; }
+  .tq-score-card.purple .tq-score-val { color: #26215c; }
+
+  .tq-score-card.teal { border-color: #5DCAA5; background: #E1F5EE; }
+  .tq-score-card.teal .tq-score-icon, .tq-score-card.teal .tq-score-label { color: #0F6E56; }
+  .tq-score-card.teal .tq-score-val { color: #04342C; }
+
+  .tq-score-card.amber { border-color: #EF9F27; background: #FAEEDA; }
+  .tq-score-card.amber .tq-score-icon, .tq-score-card.amber .tq-score-label { color: #854F0B; }
+  .tq-score-card.amber .tq-score-val { color: #412402; }
+
+  .tq-score-card.coral { border-color: #F0997B; background: #FAECE7; }
+  .tq-score-card.coral .tq-score-icon, .tq-score-card.coral .tq-score-label { color: #993C1D; }
+  .tq-score-card.coral .tq-score-val { color: #4A1B0C; }
+
+  .tq-final { background: #0a0a12; border-radius: var(--border-radius-lg); padding: 2.5rem 2rem; margin-top: 2rem; position: relative; overflow: hidden; }
+  .tq-final-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(99,88,221,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(99,88,221,0.1) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
+  .tq-final-tag { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8b7ff0; margin-bottom: 1rem; position: relative; z-index: 1; }
+  .tq-final-q { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; line-height: 1.2; color: #f0eeff; margin: 0 0 1rem; position: relative; z-index: 1; }
+  .tq-final-q span { color: #8b7ff0; }
+  .tq-final-divider { border: none; border-top: 1px solid rgba(160,150,255,0.2); margin: 1.25rem 0; position: relative; z-index: 1; }
+  .tq-final-body { font-size: 14.5px; line-height: 1.75; color: rgba(200,196,255,0.7); margin: 0; position: relative; z-index: 1; }
+  .tq-final-body strong { color: #b0a8ff; font-weight: 500; }
+</style>
+
+<div class="tq">
+
+  <div class="tq-hero">
+    <div class="tq-grid-bg"></div>
+    <div class="tq-badge">IIT Bombay Techfest — 30th Edition</div>
+    <div class="tq-title">TechQuest<span> 30</span></div>
+    <div class="tq-subtitle">What if innovation had consequences?</div>
+  </div>
+
+  <div class="tq-section">
+    <p class="tq-lead">Most hackathons reward whoever builds the best thing. But the best thing for whom? And for how long?</p>
+    <p class="tq-body">The real world doesn't grade you on your prototype. It grades you on what happens after — the ripple effects, the trade-offs, the unintended consequences. A self-driving car fleet might solve urban congestion and wipe out 3 million jobs. An AI diagnostic tool could save lives in cities and deepen healthcare inequality in rural areas.</p>
+    <p class="tq-body">Great innovation isn't just about solving problems. It's about knowing which new problems you're creating.</p>
+  </div>
+
+  <hr class="tq-divider">
+
+  <div class="tq-section">
+    <div class="tq-section-label">The concept</div>
+    <p class="tq-lead">Monopoly, but it's the future — and you're building it.</p>
+    <p class="tq-body">Teams receive a pool of Innovation Credits and invest them into solving real-world challenges. Every decision feeds into a shared digital ecosystem — a living simulation of a virtual society. What you build affects what everyone else is working with.</p>
+    <div class="tq-callout">Unlike Monopoly, winning isn't about owning the most. It's about building something that actually lasts — economically, technologically, and socially.</div>
+    <div class="tq-section-label" style="margin-top:1.25rem">Challenge domains</div>
+    <div class="tq-domains">
+      <span class="tq-pill">Healthcare</span>
+      <span class="tq-pill">Sustainability</span>
+      <span class="tq-pill">Transportation</span>
+      <span class="tq-pill">Cybersecurity</span>
+      <span class="tq-pill">Education</span>
+    </div>
+  </div>
+
+  <hr class="tq-divider">
+
+  <div class="tq-section">
+    <div class="tq-section-label">How it works</div>
+    <p class="tq-body">Every solution alters the shared simulation. A manufacturing breakthrough might spike economic output but tank carbon scores. An AI health tool might boost welfare while triggering a regulation crisis. At unpredictable intervals, global events drop into the game — forcing every team to adapt:</p>
+    <div class="tq-events">
+      <div class="tq-event"><i class="ti ti-bolt" aria-hidden="true"></i> Energy crisis</div>
+      <div class="tq-event"><i class="ti ti-shield-x" aria-hidden="true"></i> Cyberattack wave</div>
+      <div class="tq-event"><i class="ti ti-file-certificate" aria-hidden="true"></i> New AI regulations</div>
+      <div class="tq-event"><i class="ti ti-telescope" aria-hidden="true"></i> Scientific breakthrough</div>
+    </div>
+    <p class="tq-body">The team that built the most efficient solution last round might find it obsolete — or dangerous — this round.</p>
+  </div>
+
+  <hr class="tq-divider">
+
+  <div class="tq-section">
+    <div class="tq-section-label">The scoreboard</div>
+    <p class="tq-body">Teams are judged across four dimensions simultaneously. Optimise only for profit? Watch your planet score tank. Chase sustainability at all costs? The economy crumbles.</p>
+    <div class="tq-scores">
+      <div class="tq-score-card purple">
+        <div class="tq-score-icon"><i class="ti ti-trending-up" aria-hidden="true"></i></div>
+        <div class="tq-score-label">Economic</div>
+        <div class="tq-score-val">Profit & growth</div>
+      </div>
+      <div class="tq-score-card teal">
+        <div class="tq-score-icon"><i class="ti ti-cpu" aria-hidden="true"></i></div>
+        <div class="tq-score-label">Innovation</div>
+        <div class="tq-score-val">Tech advancement</div>
+      </div>
+      <div class="tq-score-card amber">
+        <div class="tq-score-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
+        <div class="tq-score-label">Social</div>
+        <div class="tq-score-val">Equity & welfare</div>
+      </div>
+      <div class="tq-score-card coral">
+        <div class="tq-score-icon"><i class="ti ti-leaf" aria-hidden="true"></i></div>
+        <div class="tq-score-label">Planet</div>
+        <div class="tq-score-val">Sustainability</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tq-final">
+    <div class="tq-final-grid"></div>
+    <div class="tq-final-tag">The question Techfest 30 is asking</div>
+    <div class="tq-final-q">Can you build a better future<br>without <span>breaking something else</span><br>along the way?</div>
+    <div class="tq-final-divider"></div>
+    <p class="tq-final-body">For 30 years, Techfest has celebrated what technology <strong>can</strong> do. TechQuest 30 asks the harder question — what <strong>should</strong> it do, and at what cost? Innovation isn't about owning the board. It's about being brave enough to <strong>shape it responsibly.</strong></p>
+  </div>
+
+</div>
