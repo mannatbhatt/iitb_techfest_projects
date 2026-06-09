@@ -1,149 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Techfest | Beyond Tomorrow</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Techfest 3D World</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #000, #050505);
+  font-family: Poppins;
+  color: white;
+}
 
-  <link rel="stylesheet" href="style.css">
+/* NAV */
+.nav {
+  position: fixed;
+  top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.nav button {
+  padding: 10px 14px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-family: Orbitron;
+}
+
+/* CAMERA */
+.camera {
+  width: 100vw;
+  height: 100vh;
+  perspective: 1200px;
+  transition: transform 1s ease;
+}
+
+/* WORLD */
+.world {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+/* CUBE (CENTER HERO) */
+.cube {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 160px;
+  height: 160px;
+  transform-style: preserve-3d;
+  transform: translate(-50%, -50%);
+  animation: spin 8s linear infinite;
+}
+
+.face {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Orbitron;
+  font-weight: bold;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* cube faces */
+.front  { transform: translateZ(80px); background: #ff9933; }
+.back   { transform: rotateY(180deg) translateZ(80px); background: #138808; }
+.right  { transform: rotateY(90deg) translateZ(80px); background: white; color: black; }
+.left   { transform: rotateY(-90deg) translateZ(80px); background: #d72638; }
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg); }
+  to   { transform: translate(-50%, -50%) rotateX(360deg) rotateY(360deg); }
+}
+
+/* SECTIONS AROUND WORLD */
+.box {
+  position: absolute;
+  width: 220px;
+  height: 140px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Orbitron;
+  overflow: hidden;
+  transition: 0.8s ease;
+}
+
+.box img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.4;
+}
+
+/* placement in 3D space */
+#hack { top: 10%; left: 10%; background: #ff9933; }
+#idea { top: 10%; right: 10%; background: white; color: black; }
+#guest { bottom: 10%; left: 10%; background: #d72638; }
+#robot { bottom: 10%; right: 10%; background: #138808; }
+
+/* ZOOM STATES */
+.zoom-hack { transform: scale(1.6) translate(-20%, -10%); }
+.zoom-idea { transform: scale(1.6) translate(20%, -10%); }
+.zoom-guest { transform: scale(1.6) translate(-20%, 10%); }
+.zoom-robot { transform: scale(1.6) translate(20%, 10%); }
+.zoom-home { transform: scale(1); }
+</style>
 </head>
 
 <body>
 
-  <section class="hero">
+<!-- NAV -->
+<div class="nav">
+  <button onclick="zoom('home')">Home</button>
+  <button onclick="zoom('hack')">Hackathons</button>
+  <button onclick="zoom('idea')">Ideathons</button>
+  <button onclick="zoom('guest')">Guests</button>
+  <button onclick="zoom('robot')">Robotics</button>
+</div>
 
-    <div class="glow"></div>
+<!-- CAMERA -->
+<div class="camera" id="camera">
 
-    <div class="hero-content">
+  <div class="world">
 
-      <p class="tag">
-        IIT BOMBAY TECHFEST
-      </p>
-
-      <h1>
-        BEYOND<br>
-        TOMORROW
-      </h1>
-
-      <p class="subtitle">
-        Exploring the intersection of technology, creativity,
-        and innovation through ideas that shape the future.
-      </p>
-
-      <button class="btn">
-        Explore
-      </button>
-
+    <!-- CUBE -->
+    <div class="cube">
+      <div class="face front">TECH</div>
+      <div class="face back">FEST</div>
+      <div class="face right">2026</div>
+      <div class="face left">IIT BOMBAY</div>
     </div>
 
-  </section>
-
-  <section class="section">
-
-    <h2>About Techfest</h2>
-
-    <p class="section-text">
-      Techfest brings together students, innovators and creators
-      from across the country to showcase technology, exchange
-      ideas and inspire the next wave of innovation.
-    </p>
-
-  </section>
-
-  <section class="section">
-
-    <h2>Domains</h2>
-
-    <div class="cards">
-
-      <div class="card">
-        <h3>Artificial Intelligence</h3>
-      </div>
-
-      <div class="card">
-        <h3>Robotics</h3>
-      </div>
-
-      <div class="card">
-        <h3>Cyber Security</h3>
-      </div>
-
-      <div class="card">
-        <h3>Space Technology</h3>
-      </div>
-
-      <div class="card">
-        <h3>Quantum Computing</h3>
-      </div>
-
-      <div class="card">
-        <h3>Innovation Challenge</h3>
-      </div>
-
+    <!-- SECTIONS -->
+    <div class="box" id="hack">
+      <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b"/>
+      HACKATHONS
     </div>
 
-  </section>
-
-  <section class="section">
-
-    <h2>The Road Ahead</h2>
-
-    <div class="timeline">
-
-      <div class="card">
-        <h3>2025</h3>
-        <p>Intelligent Systems</p>
-      </div>
-
-      <div class="card">
-        <h3>2035</h3>
-        <p>Human–Machine Collaboration</p>
-      </div>
-
-      <div class="card">
-        <h3>2050</h3>
-        <p>Quantum Breakthroughs</p>
-      </div>
-
-      <div class="card">
-        <h3>2075+</h3>
-        <p>Beyond Earth</p>
-      </div>
-
+    <div class="box" id="idea">
+      <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998"/>
+      IDEATHONS
     </div>
 
-  </section>
+    <div class="box" id="guest">
+          <img src="https://imgs.search.brave.com/MLPSmqklnSblWa2EbbikDGjZ_A1C7TNFO5I1kR7qkjA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/ZXRvbmxpbmUuY29t/L3NpdGVzL2RlZmF1/bHQvZmlsZXMvc3R5/bGVzLzY0MHhoL3B1/YmxpYy9pbWFnZXMv/MjAyMS0wNS9nZXR0/eWltYWdlcy0xNDM0/ODA0MTcuanBnP3dp/ZHRoPTEwMjQmcXVh/bGl0eT04MA"/>
 
-  <section class="section">
+      GUESTS
+    </div>
 
-    <h2>Join the Journey</h2>
+    <div class="box" id="robot">
+      <img src="https://imgs.search.brave.com/ZTT9pq69tioZHBgYarZcMQyFpAfrs966tChPeY60AxQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNzAv/MjU2LzU1Ni9zbWFs/bC95b3VuZy1zdHVk/ZW50cy1jb2xsYWJv/cmF0ZS1vbi1hLXJv/Ym90aWNzLXByb2pl/Y3QtaW4tYS1icmln/aHQtd29ya3Nob3At/ZHVyaW5nLWRheWxp/Z2h0LWhvdXJzLXBo/b3RvLmpwZWc"/>
+      ROBOTICS
+    </div>
 
-    <p class="section-text">
-      Be part of a community that transforms ideas into impact.
-    </p>
+  </div>
+</div>
 
-    <button class="btn">
-      Register Now
-    </button>
+<script>
+const camera = document.getElementById("camera");
 
-  </section>
+function zoom(section) {
+  camera.className = "camera"; // reset
 
-  <footer>
-
-    <h3>TECHFEST</h3>
-
-    <p>
-      Innovation • Technology • Creativity
-    </p>
-
-  </footer>
-
-  <script src="script.js"></script>
+  if (section === "home") {
+    camera.classList.add("zoom-home");
+  }
+  if (section === "hack") {
+    camera.classList.add("zoom-robot");
+  }
+  if (section === "idea") {
+    camera.classList.add("zoom-guest");
+  }
+  if (section === "guest") {
+    camera.classList.add("zoom-idea");
+  }
+  if (section === "robot") {
+    camera.classList.add("zoom-hack");
+  }
+}
+</script>
 
 </body>
 </html>
